@@ -16,7 +16,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/")
 async def root():
-    return {"Hola fastApis"}
+    return {"Hola fastApis"} 
 
 """@app.get("/items/{item_id}")
 async def read_item(item_id: int, q: Union[str, None] = None):
