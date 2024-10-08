@@ -24,13 +24,13 @@ async def user(id:str):
 
 @router.post("/", response_model=User,  status_code=status.HTTP_201_CREATED)
 async def user(user: User):
-    user_dict=dict(user)
-    if type(search_user("email", user_dict.email))== User:
+    
+    if type(search_user("email", user.email))== User:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="El usario ya existe")
     
     
-    
-    #del user_dict["id"]
+    user_dict=dict(user)
+    del user_dict["id"]
     id= db_client.users.insert_one(user_dict).inserted_id
 
     new_user= user_schema(db_client.users.find_one({"_id": id}))
