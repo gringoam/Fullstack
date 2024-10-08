@@ -29,7 +29,7 @@ async def user(user: User):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="El usario ya existe")
     
     
-    user_dict=dict(user)
+    user_dict=dict(user.model_dump())
     del user_dict["id"]
     id= db_client.users.insert_one(user_dict).inserted_id
 
