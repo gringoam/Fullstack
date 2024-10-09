@@ -30,7 +30,7 @@ async def user(user: User):
     
     
     user_dict=dict(user)
-    
+    print(user_dict)
     id= db_client.users.insert_one(user_dict).inserted_id
 
    
