@@ -25,9 +25,8 @@ async def user(id:str):
 @router.post("/", response_model=User,  status_code=status.HTTP_201_CREATED)
 async def user(user: User):
     
-    user_dict=dict(user)
-    print(user_dict)
-    if type(search_user("email", user_dict.email))== User:
+   
+    if type(search_user("email", user.email))== User:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="El usario ya existe")
     
     
