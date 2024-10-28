@@ -37,9 +37,10 @@ class State(rx.State):
     def handle_submit_Update(self, form_data_update:dict):
         """Handle the form submit."""
         #self.form_data_update=form_data
-        self.form_data_update=js.dumps({"id":"", "username":form_data_update["username"], "email":form_data_update["email"]})
-        print(form_data_update)
-        response = rq.put(f"http://coastal-blanche-gringos-ea9ebaeb.koyeb.app/userdb/"+form_data_update["id"],data=self.form_data_update)  
+        self.form_data_update=js.dumps({"id":"", "username":"pepe", "email":form_data_update["email"]})
+        print(self.form_data_update)
+        print(form_data_update["id"])
+        response = rq.put(f"http://coastal-blanche-gringos-ea9ebaeb.koyeb.app/userdb/",data=self.form_data_update)  
         print(response)
         #self.form_Update_not_hidden({})
         self.get_clients_db()
@@ -172,7 +173,7 @@ def index() -> rx.Component:
                         ),
                          on_submit=State.handle_submit_add,
                          reset_on_submit=True,
-                         id="formAddOculto",
+                         #id="formAddOculto",
                         hidden=State.formAdd
                      )
                 ),
@@ -201,7 +202,7 @@ def index() -> rx.Component:
                      ),
                     on_submit=State.handle_submit_Update,
                     reset_on_submit=True,
-                    id="formUpdateOculto",
+                    #id="formUpdateOculto",
                     hidden=State.formUpdate               
                     )
                  )
