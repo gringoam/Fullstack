@@ -45,10 +45,11 @@ async def user(user: User):
 async def user(user: User):
     user_dict= dict(user)
     del user_dict["id"]
+    print(user_dict)
     try:
        db_client.users.find_one_and_replace({"_id":ObjectId(user.id)}, user_dict)
     except: 
-       raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Error: No se a actualizado el usuario  ")
+       raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Error: No se a actualizado el usuario")
     
     return search_user("_id", ObjectId(user.id))  
     
